@@ -163,27 +163,4 @@ make
 ./SmartGreenhouse.exe
 ```
 
----
 
-## 📌 Key Design Decisions
-
-**Why Queue instead of global variable for sensor data?**
-Queue provides thread-safe, buffered communication between tasks. The Control Task blocks on the queue and only wakes when new data arrives — more efficient than polling a global variable.
-
-**Why Mutex for UART?**
-Multiple tasks (Display, UART, Alarm) all write to stdout. Without a mutex, their outputs would interleave and produce garbled text. The mutex ensures only one task writes at a time.
-
-**Why higher priority for Alarm Task?**
-Safety-critical alerts must preempt lower-priority tasks immediately. If the temperature is dangerously high, the alarm should not be delayed by display or UART operations.
-
----
-
-## 🎯 Skills Demonstrated
-
-`FreeRTOS` `RTOS` `Embedded Systems` `C` `Multitasking` `Queue` `Mutex` `Semaphore` `Task Scheduling` `Embedded Software Architecture` `MinGW` `Real-Time Systems`
-
----
-
-## 📄 License
-
-MIT License
